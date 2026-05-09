@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html><head><title>Evaluation Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head><body class="container py-4">
+    <h2>📊 Benchmark Results</h2>
+    <h3>Adversarial LSB Sweep</h3>
+    <table class="table table-striped">
+        <tr><th>Epsilon</th><th>Payload%</th><th>LSB Susp</th><th>Adv Susp</th><th>PSNR</th><th>Evaded</th></tr>
+        {% for r in adv_results %}
+        <tr><td>{{ r.epsilon }}</td><td>{{ r['payload%']*100 }}%</td><td>{{ r.lsb_suspicion }}</td><td>{{ r.adv_suspicion }}</td><td>{{ r.psnr_db }}</td><td>{{ r.evaded }}</td></tr>
+        {% endfor %}
+    </table>
+    <h3>Semantic Steganography Sweep</h3>
+    <table class="table table-striped">
+        <tr><th>Block Size</th><th>Step</th><th>Capacity</th><th>Suspicion</th><th>PSNR</th><th>SSIM</th></tr>
+        {% for r in sem_results %}
+        <tr><td>{{ r.block_size }}</td><td>{{ r.step }}</td><td>{{ r.capacity_chars }}</td><td>{{ r.suspicion }}</td><td>{{ r.psnr_db }}</td><td>{{ r.ssim }}</td></tr>
+        {% endfor %}
+    </table>
+    <a href="/" class="btn btn-primary">Back</a>
+</body>
+</html>

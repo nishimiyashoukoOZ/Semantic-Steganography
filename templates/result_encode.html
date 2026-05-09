@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html><head><title>Encoding Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head><body class="container py-4">
+    <h2>✅ Encoding Successful ({{ result.method }})</h2>
+    {% if result.method == 'Adversarial LSB' %}
+        <ul class="list-group">
+            <li class="list-group-item">Original suspicion: {{ result.original_score }}</li>
+            <li class="list-group-item">After LSB: {{ result.lsb_score }}</li>
+            <li class="list-group-item">After Adversarial: {{ result.adv_score }}</li>
+            <li class="list-group-item">Evasion successful: {{ result.evaded }}</li>
+        </ul>
+    {% else %}
+        <ul class="list-group">
+            <li class="list-group-item">Suspicion score: {{ result.suspicion }}</li>
+            <li class="list-group-item">PSNR: {{ result.psnr }} dB</li>
+            <li class="list-group-item">SSIM: {{ result.ssim }}</li>
+            <li class="list-group-item">Verdict: {{ result.verdict }}</li>
+        </ul>
+    {% endif %}
+    <a href="{{ url_for('download_file', filename=result.stego_file) }}" class="btn btn-primary mt-3">Download Stego Image</a>
+    <a href="/" class="btn btn-outline-secondary mt-3">Back</a>
+</body></html>
